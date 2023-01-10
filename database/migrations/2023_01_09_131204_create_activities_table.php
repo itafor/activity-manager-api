@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->text('image_url');
+            $table->text('image_url')->nullable();
             $table->date('activity_date');
+            $table->integer('created_by')->comment('The admin that create a specific activity');
+            $table->enum('activity_type', ['global','individual']);
             $table->timestamps();
         });
     }

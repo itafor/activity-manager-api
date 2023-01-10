@@ -17,6 +17,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('activity_id')->constrained('activities')->onDelete('cascade');
+            $table->string('title');
+            $table->text('description');
+            $table->text('image_url')->nullable();
+            $table->date('activity_date');
+            $table->enum('activity_type', ['global','individual']);
             $table->timestamps();
         });
     }

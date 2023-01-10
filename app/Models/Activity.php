@@ -9,6 +9,8 @@ class Activity extends Model
 {
     use HasFactory;
 
+  protected  $fillable = ['title', 'description', 'activity_date', 'image_url', 'activity_type'];
+
      public function users()
     {
         return $this->belongsToMany(User::class, 'activity_users');

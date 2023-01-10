@@ -42,7 +42,7 @@ Route::prefix('v1')->group(
                        
                         Route::get('profile', [App\Http\Controllers\UserAuthController::class, 'userProfile']);
                         
-                        Route::get('my-activities', [App\Http\Controllers\ActivityController::class, 'myActivities']);
+                        Route::post('my-activities', [App\Http\Controllers\ActivityController::class, 'myActivities']);
 
                                 
                             });
@@ -70,6 +70,21 @@ Route::prefix('v1')->group(
                          Route::prefix('user')->group(function () {
                             Route::get('/list', [App\Http\Controllers\UserController::class, 'getUsers']);
                             Route::get('/show/{userId}', [App\Http\Controllers\UserController::class, 'getOneUser']);
+                        });
+
+                          Route::prefix('activity')->group(function () {
+                            Route::post('/global/create', [App\Http\Controllers\ActivityController::class, 'createGlobalActivity']);
+
+                            Route::post('/individual/create', [App\Http\Controllers\ActivityController::class, 'createIndividualActivity']);
+
+                            Route::post('/global/update', [App\Http\Controllers\ActivityController::class, 'updateGlobalActivity']);
+
+                            Route::post('/individual/update', [App\Http\Controllers\ActivityController::class, 'updateIndividualUserActivity']);
+
+
+                            Route::get('/list', [App\Http\Controllers\ActivityController::class, 'getAllActivities']);
+                            Route::get('/show/{id}', [App\Http\Controllers\ActivityController::class, 'getOneActivity']);
+                            Route::delete('/destroy/{id}', [App\Http\Controllers\ActivityController::class, 'deleteActivity']);
                         });
 
                       
